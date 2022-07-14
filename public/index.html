@@ -6,20 +6,56 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+    <script 
+      type="text/javascript" 
+      src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
+    </script>
   </head>
   <body>
     <div class="splash-container">
-      <h1 class="splash-title">BITCOINSHIPS</h1>
-      <h3 class="subtitle">RUN Hackathon Multiplayer Desktop Edition</h3>
+      <h1 class="splash-title">BITCOIN INVADERS</h1>
+      <h3 class="subtitle">Relysia Hackathon Demo</h3>
       <div>
-        <button type="button" class="btn2 splash-btn" disabled="disabled">Single Player</button>
-        <a href="/hopper.html" class="btn splash-btn">Multiplayer</a>
+        <a href="/hopper.html" type="button" class="btn btn2 splash-btn">Play Now</a>
+        <!-- <a href="/hopper.html" class="btn mute-btn splash-btn" disabled="disabled">Multiplayer</a> -->
       </div>
+      <form id="form" >
+        <p>Log In With Relysia</p>
+        <label>Email</label><br>
+        <input type="text" id="mail" value="acc@gmail.com"><br><br>
+        <label>Password</label><br>
+        <input type="password" id="password" value=""><br><br>
+        <input type="button" onClick="login()" value="login"/>
+        <p><a href="">New to Relysia? Create your account here.</a></p>
+        <p>We recommend using an account with very little funds for now while this site is in alpha testing stages!</p>
+      </form> 
+      
+      <div id="block2">
+         <p id="token"> </p>
+      </div>
+      
+      <script> 
+      let login = () => {
+          var config = {
+              method: 'post',
+              url: "https://api.relysia.com/v1/auth",
+              data: {
+                    "email": document.getElementById("mail").value,
+                    "password": document.getElementById("password").value
+              }
+          };
+                  
+          axios(config)
+          .then((response) => {
+            let p = document.getElementById("token");
+            console.log(response.data.data);
+            const authToken = JSON.stringify(response.data.data.token, null, "<br>");
+            document.cookie='authToken='+authToken;
+          })
+      };
+      </script>
     </div>
 
     <img src="/images/bitcoinships.png" class="splash-battleship-image">
   </body>
-  <script>
-    document.querySelector(".btn2").disabled = true;
-  </script>
 </html>
