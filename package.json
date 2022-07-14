@@ -1,0 +1,31 @@
+{
+  "name": "battleships",
+  "version": "1.0.0",
+  "description": "Multiplayer Battleship Game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kubowania/battleships.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kubowania/battleships/issues"
+  },
+  "homepage": "https://github.com/kubowania/battleships#readme",
+  "dependencies": {
+    "bsv": "^1.5.6",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "run-sdk": "^0.6.24",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
