@@ -74,3 +74,16 @@ body {
 .splash-btn:first-child {
   margin-left: 0;
 }
+
+#relysia-login {
+  background-color: lightcyan;
+}
+
+#block2 {
+  background-color: #daf7ed; 
+  padding: 30px;
+  border: 1px dotted grey;
+  font-family: Arial, Helvetica, sans-serif;
+  word-break: break-all;
+  margin-top: 20px;
+}
