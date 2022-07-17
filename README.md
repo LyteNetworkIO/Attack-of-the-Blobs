@@ -1,6 +1,6 @@
-# Bitcoin Invaders
-Blast the scamcoins and save Bitcoin (BSV)
+# Blob Invasion
+Blast the blobs as fast as possible
 
 This game is an implementation of the Open Leaderboard Payout protocol.
 
-Use at your own risk! Those aliens don't mess around lol.
+Use at your own risk! Those blobs don't mess around 🟣
