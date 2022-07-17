@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Play</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="hopper.js"></script> -->
+  </head>
+  <body>
+    <div class="splash-container">
+      <center>
+      <form id="form2">
+        <input type="button" id="show-wallets-btn" class="btn splash-btn" value="Play (Cost is 1 MILLI = 0.001 BSV)"/>
+      </form> 
+      </center>
+
+      <div>
+        <a href="/client-side.html" class="btn splash-btn">Play: 1 MILLI (0.001 BSV) per play)</a>
+      </div>
+    </div>
+
+    <img src="/images/bitcoinships.png" class="splash-battleship-image">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  
+  let showWalletsBtn = document.getElementById('show-wallets-btn')  
+
+  // Original JavaScript code by Chirp Internet: chirpinternet.eu
+  // Please acknowledge use of this code by including this header.
+  function getCookie(name) {
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
+  }
+  let authTokenExtracted = getCookie("authToken");
+  const authTokenTrimmed = authTokenExtracted.replaceAll('"', '');
+  console.log(authTokenTrimmed);
+  if (typeof authTokenTrimmed === 'string') {
+  // 👇️ this runs
+  console.log('✅ type is string');
+} else {
+  console.log('⛔️ type is NOT string');
+}
+
+  showWalletsBtn.onclick = () => {
+        console.log("and again: "+authTokenTrimmed)
+        var config = {
+            method: 'get',
+            url: "https://api.relysia.com/v1/wallets",
+            headers: { authToken: authTokenTrimmed}
+        };
+                
+        axios(config)
+        .then((response) => {
+          let p2 = document.getElementById("wallets");
+          p2.innerHTML = JSON.stringify(response.data.data, null, "<br>");
+        })
+    };
+
+});
+  </script>
+
+  </body>
+</html>
