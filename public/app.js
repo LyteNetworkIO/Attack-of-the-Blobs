@@ -432,6 +432,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setupButtons.style.display = 'none'
     if(isGameOver) return
     if(!ready) {
+
+      // If player isn't ready, show payment method. 
+      // player becoming ready is equivalent to them putting in the quarter to start an arcade game.
+      // So just have a modal pop up to be like Start game? 25 cents. Something simple like that.
+      // Could even be a div below the main screen. 
+      // So when the player shows up, the space invaders aren't moving. 
       async function showTwetchPay() {
         var outputs = [
             {
