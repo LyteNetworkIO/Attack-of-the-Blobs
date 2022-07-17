@@ -1,4 +1,4 @@
-# Blob Invasion
+# Blob Attack
 Blast the blobs as fast as possible
 
 This game is an implementation of the Open Leaderboard Payout protocol.
