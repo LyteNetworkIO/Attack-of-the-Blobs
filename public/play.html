@@ -13,13 +13,11 @@
   <body>
     <div class="splash-container">
       <center>
-      <form id="form2">
-        <input type="button" id="show-wallets-btn" class="btn splash-btn" value="Play (Cost is 1 MILLI = 0.001 BSV)"/>
-      </form> 
-      </center>
-
+      <p>Left and right arrow move, up arrow fires.</p>
+      <p>Left and right arrow move, up arrow shoots.</p> 
+      <p>When you click Play, you will be charged 1 MILLI (0.001 BSV)</p> 
       <div>
-        <a href="/client-side.html" class="btn splash-btn">Play: 1 MILLI (0.001 BSV) per play)</a>
+        <p class="btn splash-btn" id="play-btn">Play: 1 MILLI (0.001 BSV) per play)</p>
       </div>
     </div>
 
@@ -29,7 +27,34 @@
     document.addEventListener('DOMContentLoaded', async () => {
   
     const relysia = new RelysiaSDK();
-  let showWalletsBtn = document.getElementById('show-wallets-btn')  
+
+    const playBtn = document.getElementById('play-btn')  
+
+    playBtn.onclick = async function() {
+      const authTokenExtracted = getCookie("authToken");
+      const walletIDExtracted = getCookie("walletID")
+      const authTokenTrimmed = authTokenExtracted.replaceAll('"', '');
+      const walletIDTrimmed = walletIDExtracted.replaceAll('"', '');
+
+      var config = {
+            method: 'post',
+            url: "https://api.relysia.com/v1/send",
+            headers: { authToken: authTokenTrimmed },
+            data: {
+                 "dataArray": [
+                    {
+                      "to": "2087@relysia.com",
+                      "amount": 0.0000002
+                    }
+                  ]
+            }
+        };    
+        axios(config)
+        .then((response) => {
+          console.log(response);
+        })
+        
+    }
 
   // Original JavaScript code by Chirp Internet: chirpinternet.eu
   // Please acknowledge use of this code by including this header.
@@ -38,34 +63,8 @@
     var value = re.exec(document.cookie);
     return (value != null) ? unescape(value[1]) : null;
   }
-  let authTokenExtracted = getCookie("authToken");
-  let walletIDExtracted = getCookie("walletID")
 
-  /* var parameters = {
-    serviceId: 'optional',
-    walletID: 'optional',
-  }
-
-
-  const walletIDResponse = await relysia.allAddresses(parameters);
-
-  console.log(walletIDResponse);
-*/
-  const authTokenTrimmed = authTokenExtracted.replaceAll('"', '');
-  const walletIDTrimmed = walletIDExtracted.replaceAll('"', '');
-
-  var config = {
-    method: 'get',
-    url: "https://api.relysia.com/v1/address",
-    headers: { authToken: authTokenTrimmed},
-    walletID: walletIDTrimmed
-  };
-                
-  axios(config)
-  .then((response) => {
-    console.log(response);
-    console.log(JSON.stringify(response.data.data, null, "<br>"));
-  })
+  
 });
 
   </script>

@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var config = {
       method: 'get',
       url: "https://api.relysia.com/v1/wallets",
-      headers: { authToken: authTokenTrimmed}
+      headers: { authToken: authTokenTrimmed }
   };
           
   axios(config)
